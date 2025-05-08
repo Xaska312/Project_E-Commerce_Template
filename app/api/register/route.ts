@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import bcrypt from "bcrypt"
+import bcryptjs from "bcryptjs" // Cambiado de bcrypt a bcryptjs
 
 // En una aplicación real, esto se conectaría a tu base de datos
 // Este es solo un ejemplo con usuarios en memoria para demostración
@@ -8,7 +8,7 @@ const users = [
     id: "1",
     name: "Usuario Demo",
     email: "demo@example.com",
-    password: "$2b$10$8r0qPVaJeLYB.Zs3s2JZAeQvQV/vK9Vv8M9PJ0/W9O.vhvwE.Tnz2", // "password123"
+    password: "$2a$10$8r0qPVaJeLYB.Zs3s2JZAeQvQV/vK9Vv8M9PJ0/W9O.vhvwE.Tnz2", // "password123"
   },
 ]
 
@@ -28,8 +28,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "El email ya está registrado" }, { status: 400 })
     }
 
-    // Hash de la contraseña
-    const hashedPassword = await bcrypt.hash(password, 10)
+    // Hash de la contraseña con bcryptjs
+    const hashedPassword = await bcryptjs.hash(password, 10)
 
     // Crear nuevo usuario
     const newUser = {
