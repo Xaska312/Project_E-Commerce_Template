@@ -1,171 +1,92 @@
 import Link from "next/link"
 import Image from "next/image"
-import { ShoppingCart, Search, Menu, User } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { ArrowRight } from "lucide-react"
 
 export default function Home() {
+  // Datos de ejemplo para categorías
+  const categories = [
+    { name: "Anillos", slug: "anillos", image: "/placeholder.svg?height=600&width=400&text=Anillos" },
+    { name: "Pulseras", slug: "pulseras", image: "/placeholder.svg?height=600&width=400&text=Pulseras" },
+    { name: "Aretes", slug: "aretes", image: "/placeholder.svg?height=600&width=400&text=Aretes" },
+    { name: "Collares", slug: "collares", image: "/placeholder.svg?height=600&width=400&text=Collares" },
+  ]
+
+  // Datos de ejemplo para productos destacados
+  const featuredProducts = [
+    {
+      id: 1,
+      name: "Anillo Celestial",
+      category: "Anillos",
+      price: 12500,
+      image: "/placeholder.svg?height=400&width=400&text=Anillo+Celestial",
+    },
+    {
+      id: 2,
+      name: "Pulsera Estrella",
+      category: "Pulseras",
+      price: 8900,
+      image: "/placeholder.svg?height=400&width=400&text=Pulsera+Estrella",
+    },
+    {
+      id: 3,
+      name: "Aretes Luna",
+      category: "Aretes",
+      price: 7500,
+      image: "/placeholder.svg?height=400&width=400&text=Aretes+Luna",
+    },
+    {
+      id: 4,
+      name: "Collar Constelación",
+      category: "Collares",
+      price: 15900,
+      image: "/placeholder.svg?height=400&width=400&text=Collar+Constelación",
+    },
+  ]
+
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-background">
-        <div className="container flex items-center justify-between h-16 px-4 md:px-6">
-          <div className="flex items-center gap-2">
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-              <span className="sr-only">Menú</span>
-            </Button>
-            <Link href="/" className="flex items-center gap-2">
-              <Image src="/placeholder.svg?height=32&width=32" width={32} height={32} alt="Logo" />
-              <span className="text-xl font-bold">TiendaFácil</span>
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm">
-            <Link href="/" className="font-medium transition-colors hover:text-primary">
-              Inicio
-            </Link>
-            <Link href="/productos" className="font-medium transition-colors hover:text-primary">
-              Productos
-            </Link>
-            <Link href="/categorias" className="font-medium transition-colors hover:text-primary">
-              Categorías
-            </Link>
-            <Link href="/ofertas" className="font-medium transition-colors hover:text-primary">
-              Ofertas
-            </Link>
-            <Link href="/contacto" className="font-medium transition-colors hover:text-primary">
-              Contacto
-            </Link>
-          </nav>
-          <div className="flex items-center gap-4">
-            <form className="hidden md:flex items-center">
-              <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                <Input type="search" placeholder="Buscar productos..." className="pl-8 w-[200px] lg:w-[300px]" />
-              </div>
-            </form>
-            <Button variant="outline" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
-              <Badge className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0">3</Badge>
-              <span className="sr-only">Carrito</span>
-            </Button>
-            <Button variant="outline" size="icon">
-              <User className="h-5 w-5" />
-              <span className="sr-only">Cuenta</span>
-            </Button>
-          </div>
-        </div>
-      </header>
-
+    <>
       {/* Hero Section */}
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="flex flex-col justify-center space-y-4">
-              <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Tu tienda en línea, sin complicaciones
-                </h1>
-                <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                  Productos de calidad con envío rápido y seguro. Compra ahora y recibe en la comodidad de tu hogar.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg">Ver productos</Button>
-                <Button variant="outline" size="lg">
-                  Ofertas especiales
-                </Button>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/placeholder.svg?height=550&width=550"
-                width={550}
-                height={550}
-                alt="Hero Image"
-                className="rounded-lg object-cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="w-full py-12 md:py-24">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Productos Destacados</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Descubre nuestra selección de productos más populares y mejor valorados.
-              </p>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
-            {[1, 2, 3, 4].map((i) => (
-              <Link href={`/producto/${i}`} key={i} className="group">
-                <Card className="overflow-hidden transition-all hover:shadow-lg">
-                  <div className="relative aspect-square">
-                    <Image
-                      src={`/placeholder.svg?height=400&width=400&text=Producto+${i}`}
-                      alt={`Producto ${i}`}
-                      fill
-                      className="object-cover transition-transform group-hover:scale-105"
-                    />
-                    {i === 1 && <Badge className="absolute top-2 right-2 bg-red-500 hover:bg-red-600">Oferta</Badge>}
-                  </div>
-                  <CardContent className="p-4">
-                    <h3 className="font-semibold text-lg">Producto Ejemplo {i}</h3>
-                    <p className="text-sm text-muted-foreground">Categoría {i}</p>
-                  </CardContent>
-                  <CardFooter className="p-4 pt-0 flex justify-between items-center">
-                    <div>
-                      <p className="font-bold text-lg">$99.99</p>
-                      {i === 1 && <p className="text-sm line-through text-muted-foreground">$129.99</p>}
-                    </div>
-                    <Button size="sm">
-                      <ShoppingCart className="h-4 w-4 mr-2" />
-                      Añadir
-                    </Button>
-                  </CardFooter>
-                </Card>
+      <section className="bg-astrela-black text-astrela-pearl py-20 md:py-32">
+        <div className="astrela-container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              Descubre el brillo ético de la <span className="text-astrela-gold">Moissanita</span>
+            </h1>
+            <p className="text-lg md:text-xl mb-10 text-astrela-silver">
+              Joyería elegante y sostenible para los momentos más especiales de tu vida
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Link href="/coleccion" className="btn-astrela">
+                Ver colección
               </Link>
-            ))}
-          </div>
-          <div className="flex justify-center mt-10">
-            <Button variant="outline" size="lg">
-              Ver todos los productos
-            </Button>
+              <Link href="/moissanita" className="btn-astrela-outline text-astrela-pearl border-astrela-gold">
+                Descubrir Moissanita
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="w-full py-12 md:py-24 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Categorías</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Explora nuestras categorías y encuentra exactamente lo que estás buscando.
-              </p>
-            </div>
+      {/* Categories Section */}
+      <section className="py-20">
+        <div className="astrela-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nuestras Categorías</h2>
+            <div className="w-20 h-1 bg-astrela-gold mx-auto"></div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-            {["Electrónica", "Ropa", "Hogar", "Deportes"].map((category, i) => (
-              <Link href={`/categoria/${i + 1}`} key={i} className="group">
-                <div className="relative overflow-hidden rounded-lg aspect-square">
-                  <Image
-                    src={`/placeholder.svg?height=300&width=300&text=${category}`}
-                    alt={category}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                    <h3 className="text-white font-bold text-xl">{category}</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((category) => (
+              <Link href={`/coleccion/${category.slug}`} key={category.slug} className="category-card">
+                <div className="relative aspect-[3/4] overflow-hidden">
+                  <Image src={category.image || "/placeholder.svg"} alt={category.name} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-astrela-black/70 to-transparent flex items-end p-6">
+                    <div>
+                      <h3 className="text-astrela-pearl text-xl font-bold mb-2">{category.name}</h3>
+                      <span className="text-astrela-gold flex items-center text-sm">
+                        Ver colección <ArrowRight size={16} className="ml-2" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -174,217 +95,170 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="w-full py-12 md:py-24">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Lo que dicen nuestros clientes</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Opiniones de clientes satisfechos que han comprado en nuestra tienda.
+      {/* About Moissanite Section */}
+      <section className="bg-astrela-pearl py-20">
+        <div className="astrela-container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                La Moissanita: <br />
+                Belleza Ética y Sostenible
+              </h2>
+              <p className="mb-6 text-astrela-black/80">
+                La Moissanita es una gema creada en laboratorio que ofrece un brillo excepcional, comparable al de los
+                diamantes, pero con un origen ético y sostenible. Cada pieza de Astrela está certificada y garantiza la
+                más alta calidad.
               </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-start">
+                  <span className="text-astrela-gold mr-2">✦</span>
+                  <span>Brillo superior al diamante natural</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-astrela-gold mr-2">✦</span>
+                  <span>Origen ético y sostenible</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-astrela-gold mr-2">✦</span>
+                  <span>Certificado de autenticidad</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-astrela-gold mr-2">✦</span>
+                  <span>Durabilidad excepcional (9.5 en la escala de Mohs)</span>
+                </li>
+              </ul>
+              <Link href="/moissanita" className="btn-astrela inline-block">
+                Conocer más
+              </Link>
+            </div>
+            <div className="relative aspect-square">
+              <Image
+                src="/placeholder.svg?height=600&width=600&text=Moissanita"
+                alt="Moissanita"
+                fill
+                className="object-cover rounded-sm"
+              />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-            {[
-              {
-                name: "María García",
-                text: "Excelente servicio y productos de calidad. El envío fue rápido y todo llegó en perfectas condiciones.",
-              },
-              {
-                name: "Juan Pérez",
-                text: "Me encanta la variedad de productos que ofrecen. Siempre encuentro lo que busco y a buen precio.",
-              },
-              {
-                name: "Ana Rodríguez",
-                text: "La atención al cliente es excepcional. Tuve un problema con mi pedido y lo resolvieron de inmediato.",
-              },
-            ].map((testimonial, i) => (
-              <Card key={i} className="text-center p-6">
-                <CardContent className="pt-6">
-                  <div className="flex justify-center mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="gold"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="mx-0.5"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="italic mb-4">{testimonial.text}</p>
-                  <p className="font-semibold">{testimonial.name}</p>
-                </CardContent>
-              </Card>
+        </div>
+      </section>
+
+      {/* Featured Products */}
+      <section className="py-20">
+        <div className="astrela-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Piezas Destacadas</h2>
+            <div className="w-20 h-1 bg-astrela-gold mx-auto"></div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredProducts.map((product) => (
+              <Link href={`/producto/${product.id}`} key={product.id} className="product-card">
+                <div className="relative aspect-square overflow-hidden">
+                  <Image src={product.image || "/placeholder.svg"} alt={product.name} fill className="object-cover" />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-medium mb-1">{product.name}</h3>
+                  <p className="text-sm text-astrela-black/60 mb-2">{product.category}</p>
+                  <p className="font-semibold">${product.price.toLocaleString("es-MX")}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/coleccion" className="btn-astrela inline-block">
+              Ver toda la colección
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Ethical Promise */}
+      <section className="bg-astrela-black text-astrela-pearl py-20">
+        <div className="astrela-container">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Nuestra Promesa Ética</h2>
+            <p className="text-lg mb-8 text-astrela-silver">
+              En Astrela, nos comprometemos a ofrecer joyas éticas y sostenibles. Cada pieza viene con un certificado de
+              autenticidad que garantiza el origen responsable de nuestras gemas.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+              <div className="text-center p-6 border border-astrela-gold/20">
+                <div className="text-astrela-gold text-3xl mb-4">✦</div>
+                <h3 className="font-bold mb-2">Origen Ético</h3>
+                <p className="text-sm text-astrela-silver">
+                  Todas nuestras gemas son creadas en laboratorio, libres de conflictos y con un impacto ambiental
+                  mínimo.
+                </p>
+              </div>
+              <div className="text-center p-6 border border-astrela-gold/20">
+                <div className="text-astrela-gold text-3xl mb-4">✦</div>
+                <h3 className="font-bold mb-2">Calidad Certificada</h3>
+                <p className="text-sm text-astrela-silver">
+                  Cada Moissanita viene con un certificado que garantiza su autenticidad y calidad excepcional.
+                </p>
+              </div>
+              <div className="text-center p-6 border border-astrela-gold/20">
+                <div className="text-astrela-gold text-3xl mb-4">✦</div>
+                <h3 className="font-bold mb-2">Artesanía Cuidadosa</h3>
+                <p className="text-sm text-astrela-silver">
+                  Nuestras joyas son elaboradas por artesanos expertos, asegurando la más alta calidad en cada detalle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Instagram Feed */}
+      <section className="py-20">
+        <div className="astrela-container">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Síguenos en Instagram</h2>
+            <div className="w-20 h-1 bg-astrela-gold mx-auto mb-4"></div>
+            <p className="text-astrela-black/60">@astrela_oficial</p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[1, 2, 3, 4].map((item) => (
+              <Link href="https://instagram.com" key={item} className="hover-scale">
+                <div className="relative aspect-square">
+                  <Image
+                    src={`/placeholder.svg?height=300&width=300&text=Instagram+${item}`}
+                    alt={`Instagram post ${item}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* Newsletter */}
-      <section className="w-full py-12 md:py-24 bg-muted">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-center space-y-4 text-center">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Suscríbete a nuestro boletín</h2>
-              <p className="max-w-[700px] text-muted-foreground md:text-xl">
-                Recibe las últimas novedades, ofertas exclusivas y descuentos especiales directamente en tu correo.
-              </p>
-            </div>
-            <div className="w-full max-w-md space-y-2">
-              <form className="flex flex-col sm:flex-row gap-2">
-                <Input type="email" placeholder="tu@email.com" className="flex-1" />
-                <Button type="submit">Suscribirse</Button>
-              </form>
-            </div>
+      <section className="bg-astrela-pearl py-20">
+        <div className="astrela-container">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Únete a Nuestra Lista</h2>
+            <p className="mb-8 text-astrela-black/70">
+              Suscríbete para recibir noticias sobre nuevas colecciones, ofertas exclusivas y contenido inspirador.
+            </p>
+            <form className="flex flex-col sm:flex-row gap-4">
+              <input
+                type="email"
+                placeholder="Tu correo electrónico"
+                className="flex-1 px-4 py-3 border border-astrela-gold/30 focus:border-astrela-gold focus:outline-none"
+                required
+              />
+              <button type="submit" className="btn-astrela whitespace-nowrap">
+                Suscribirse
+              </button>
+            </form>
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="w-full border-t py-6 md:py-12">
-        <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="space-y-4">
-              <Link href="/" className="flex items-center gap-2">
-                <Image src="/placeholder.svg?height=32&width=32" width={32} height={32} alt="Logo" />
-                <span className="text-xl font-bold">TiendaFácil</span>
-              </Link>
-              <p className="text-sm text-muted-foreground">
-                Tu solución completa para ventas en línea. Fácil, rápido y seguro.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Enlaces rápidos</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="text-muted-foreground hover:text-foreground">
-                    Inicio
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/productos" className="text-muted-foreground hover:text-foreground">
-                    Productos
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/categorias" className="text-muted-foreground hover:text-foreground">
-                    Categorías
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/ofertas" className="text-muted-foreground hover:text-foreground">
-                    Ofertas
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Información</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/sobre-nosotros" className="text-muted-foreground hover:text-foreground">
-                    Sobre nosotros
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contacto" className="text-muted-foreground hover:text-foreground">
-                    Contacto
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/politica-privacidad" className="text-muted-foreground hover:text-foreground">
-                    Política de privacidad
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/terminos-condiciones" className="text-muted-foreground hover:text-foreground">
-                    Términos y condiciones
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-4">Contacto</h3>
-              <ul className="space-y-2 text-sm">
-                <li className="text-muted-foreground">
-                  <span className="font-medium">Email:</span> info@tiendafacil.com
-                </li>
-                <li className="text-muted-foreground">
-                  <span className="font-medium">Teléfono:</span> +1 234 567 890
-                </li>
-                <li className="text-muted-foreground">
-                  <span className="font-medium">Dirección:</span> Calle Ejemplo 123, Ciudad
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-8 pt-8 border-t flex flex-col md:flex-row justify-between items-center">
-            <p className="text-sm text-muted-foreground">© 2023 TiendaFácil. Todos los derechos reservados.</p>
-            <div className="flex items-center gap-4 mt-4 md:mt-0">
-              <Link href="#" className="text-muted-foreground hover:text-foreground">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-                </svg>
-                <span className="sr-only">Facebook</span>
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                </svg>
-                <span className="sr-only">Instagram</span>
-              </Link>
-              <Link href="#" className="text-muted-foreground hover:text-foreground">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-                </svg>
-                <span className="sr-only">Twitter</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   )
 }

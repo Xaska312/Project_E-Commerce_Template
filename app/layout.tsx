@@ -1,13 +1,24 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Montserrat, Playfair_Display } from "next/font/google"
 import "./globals.css"
+import Navbar from "@/components/navbar"
+import Footer from "@/components/footer"
 
-const inter = Inter({ subsets: ["latin"] })
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  display: "swap",
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+})
 
 export const metadata: Metadata = {
-  title: "TiendaFácil - Tu solución de e-commerce",
-  description: "Plantilla de e-commerce para pequeñas y medianas empresas",
+  title: "Astrela | Joyería de Moissanita",
+  description:
+    "Descubre nuestra exclusiva colección de joyería con Moissanita, la alternativa ética y brillante a los diamantes tradicionales.",
     generator: 'v0.dev'
 }
 
@@ -18,7 +29,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={`${montserrat.className}`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   )
 }
